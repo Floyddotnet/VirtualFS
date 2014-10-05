@@ -39,8 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Core\Host.Static.cs" />
+    <Compile Include="Core\VirtualFsHost.Static.cs" />
+    <Compile Include="Core\IFileSystemProvider.cs" />
+    <Compile Include="Core\VirtualFsExceptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\VDictionary.Static.cs" />
   </ItemGroup>
