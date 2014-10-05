@@ -30,7 +30,7 @@ namespace VirtualFS.Core
         {
             lock (MountDriveLock)
             {
-                if (Drives.ContainsKey(driveName)) throw new DriveNameUnkownException();
+                if (Drives.ContainsKey(driveName)) throw new DriveNameUnkownException(string.Format("DriveName: '{0}'", driveName));
 
                 IFileSystemProvider fs;
                 Drives.TryRemove(driveName, out fs);
@@ -40,6 +40,13 @@ namespace VirtualFS.Core
             }
         }
 
+        internal static IFileSystemProvider GetFileSystemProviderByDriveName(string driveName)
+        {
+            if (Drives.ContainsKey(driveName)) throw new DriveNameUnkownException(string.Format("DriveName: '{0}'", driveName));
+
+            return Drives[driveName];
+        }
+        
         
     }
 }

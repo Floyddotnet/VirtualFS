@@ -9,6 +9,11 @@ namespace VirtualFS.Core
     
     public partial class VDictionary
     {
-        //public static
+        public byte[] GetBytes(string filename)
+        {
+            var driveName = VPath.GetDriveName(filename);
+            var fsp = VirtualFsHost.GetFileSystemProviderByDriveName(driveName);
+            return 
+        }
     }
 }
