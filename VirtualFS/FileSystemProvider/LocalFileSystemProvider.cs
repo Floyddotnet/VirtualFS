@@ -20,10 +20,10 @@ namespace VirtualFS.FileSystemProvider
 
         public void Dispose(){}
 
-        public byte[] GetBytes(string filepath)
+        public byte[] ReadAllBytes(string filepath)
         {
             if (Settings.DownstreamProvider != null)
-                return Settings.DownstreamProvider.GetBytes(filepath);
+                return Settings.DownstreamProvider.ReadAllBytes(filepath);
 
             var pathPart = VPath.GetPathPart(filepath);
             var fullPath = Path.Combine(Settings.BasePath, pathPart);

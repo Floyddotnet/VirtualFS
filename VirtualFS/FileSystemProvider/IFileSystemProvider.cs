@@ -5,6 +5,6 @@ namespace VirtualFS.Core
 {
     public interface IFileSystemProvider : IDisposable
     {
-        byte[] GetBytes(string filepath);
+        byte[] ReadAllBytes(string filepath);
     }
 }

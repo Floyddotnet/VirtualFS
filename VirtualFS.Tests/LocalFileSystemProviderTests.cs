@@ -16,7 +16,7 @@ namespace VirtualFS.Tests
             var lfs = new LocalFileSystemProvider(lfss);
             VirtualFS.Core.VirtualFsHost.MountDrive("local", lfs);
 
-            var r = VDictionary.GetBytes(@"local:\test.txt");
+            var r = VDictionary.ReadAllBytes(@"local:\test.txt");
             Assert.IsNotNull(r);
         }
     }
