@@ -4,6 +4,6 @@ namespace VirtualFS.FileSystemProvider
 {
     internal interface IFileSystemProviderSettings
     {
-        IFileSystemProvider UpstreamProvider { get; set; }
+        IFileSystemProvider DownstreamProvider { get; set; }
     }
 }

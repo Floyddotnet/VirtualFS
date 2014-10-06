@@ -8,7 +8,7 @@ namespace VirtualFS.Core
 {
     public static class VPath
     {
-        private const string DriveNameDelimiter = @":/";
+        private const string DriveNameDelimiter = @":\";
         public static string GetDriveName(string path)
         {
             if (!path.Contains(DriveNameDelimiter)) throw new DriveNameUnkownException(string.Format("Path: '{0}'", path));

@@ -9,7 +9,7 @@ using VirtualFS.Core;
 
 namespace VirtualFS.FileSystemProvider
 {
-    class LocalFileSystemProvider : IFileSystemProvider
+    public class LocalFileSystemProvider : IFileSystemProvider
     {
         private LocalFileSystemProviderSettings Settings{get;set;}
 
@@ -22,8 +22,9 @@ namespace VirtualFS.FileSystemProvider
 
         public byte[] GetBytes(string filepath)
         {
-            if (Settings.UpstreamProvider != null)
-                return Settings.UpstreamProvider.GetBytes(filepath);
+            if (Settings.DownstreamProvider != null)
+                return Settings.DownstreamProvider.GetBytes(filepath);
+
             var pathPart = VPath.GetPathPart(filepath);
             var fullPath = Path.Combine(Settings.BasePath, pathPart);
             return File.ReadAllBytes(fullPath);
@@ -32,7 +33,7 @@ namespace VirtualFS.FileSystemProvider
         public class LocalFileSystemProviderSettings : IFileSystemProviderSettings
         {
             public string BasePath { get; set; }
-            public IFileSystemProvider UpstreamProvider { get; set; }
+            public IFileSystemProvider DownstreamProvider { get; set; }
         }
     }
 }

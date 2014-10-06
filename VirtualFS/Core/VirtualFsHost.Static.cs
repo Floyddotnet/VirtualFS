@@ -42,9 +42,11 @@ namespace VirtualFS.Core
 
         internal static IFileSystemProvider GetFileSystemProviderByDriveName(string driveName)
         {
-            if (Drives.ContainsKey(driveName)) throw new DriveNameUnkownException(string.Format("DriveName: '{0}'", driveName));
+            IFileSystemProvider fsp;
+            var driveFound = Drives.TryGetValue(driveName, out fsp);
+            if (!driveFound) throw new DriveNameUnkownException(string.Format("DriveName: '{0}'", driveName));
 
-            return Drives[driveName];
+            return fsp;
         }
         
         
