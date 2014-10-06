@@ -40,9 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\VirtualFsHost.Static.cs" />
-    <Compile Include="Core\IFileSystemProvider.cs" />
+    <Compile Include="FileSystemProvider\IFileSystemProvider.cs" />
     <Compile Include="Core\VirtualFsExceptions.cs" />
     <Compile Include="Core\VPath.cs" />
+    <Compile Include="FileSystemProvider\IFileSystemProviderSettings.cs" />
     <Compile Include="FileSystemProvider\LocalFileSystemProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\VDictionary.Static.cs" />
