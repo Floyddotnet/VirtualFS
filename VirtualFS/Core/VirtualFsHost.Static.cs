@@ -30,11 +30,11 @@ namespace VirtualFS.Core
         {
             lock (MountDriveLock)
             {
-                if (Drives.ContainsKey(driveName)) throw new DriveNameUnkownException(string.Format("DriveName: '{0}'", driveName));
-
                 IFileSystemProvider fs;
-                Drives.TryRemove(driveName, out fs);
+                var driveFound = Drives.TryRemove(driveName, out fs);
 
+                if (!driveFound)
+                    throw new DriveNameUnkownException(string.Format("DriveName: '{0}'", driveName));
                 if(disposeFileSystemProvider)
                     fs.Dispose();
             }

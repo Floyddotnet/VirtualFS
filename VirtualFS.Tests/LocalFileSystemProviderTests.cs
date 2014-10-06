@@ -14,10 +14,12 @@ namespace VirtualFS.Tests
             var lfss = new LocalFileSystemProvider.LocalFileSystemProviderSettings();
             lfss.BasePath = @"c:\temp\LocalFileSystemProviderTestsDir\";
             var lfs = new LocalFileSystemProvider(lfss);
-            VirtualFS.Core.VirtualFsHost.MountDrive("local", lfs);
+            VirtualFsHost.MountDrive("local", lfs);
 
             var r = VDictionary.ReadAllBytes(@"local:\test.txt");
             Assert.IsNotNull(r);
+
+            VirtualFsHost.UnMountDrive("local");
         }
     }
 }
