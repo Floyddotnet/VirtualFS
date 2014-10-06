@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using VirtualFS.Core;
@@ -21,14 +22,17 @@ namespace VirtualFS.FileSystemProvider
 
         public byte[] GetBytes(string filepath)
         {
+            if (Settings.UpstreamProvider != null)
+                return Settings.UpstreamProvider.GetBytes(filepath);
             var pathPart = VPath.GetPathPart(filepath);
-            var fullPath = Path.Combine(Settings.BasePath, filepath);
+            var fullPath = Path.Combine(Settings.BasePath, pathPart);
             return File.ReadAllBytes(fullPath);
         }
 
-        public class LocalFileSystemProviderSettings
+        public class LocalFileSystemProviderSettings : IFileSystemProviderSettings
         {
             public string BasePath { get; set; }
+            public IFileSystemProvider UpstreamProvider { get; set; }
         }
     }
 }
